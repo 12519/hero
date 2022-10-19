@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HERO REAL ESTATE PROPERTY MANAGEMENT</title>
+    <link rel="shortcut icon" href="dist/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- START: Template CSS-->
+    <link rel="stylesheet" href="dist/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="dist/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="dist/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="dist/vendors/flags-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" href="dist/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="dist/vendors/materialdesign-webfont/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="dist/vendors/select2/css/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="dist/vendors/select2/css/select2.min.css" />
+
+    <!-- END Template CSS-->
+    <!-- START: Page CSS-->
+    <link rel="stylesheet" href="dist/vendors/datatable/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css" />
+    <!-- END: Page CSS-->
+    <!-- START: Custom CSS-->
+    <link rel="stylesheet" href="dist/css/main.css">
+    <!-- END: Custom CSS-->
+    <style>
+        .input-container {
+            display: -ms-flexbox;
+            /* IE10 */
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            padding: 10px;
+            background: rgb(203 181 125);
+            color: white;
+
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .icon-text {
+            padding: 6px;
+            background: rgb(203 181 125);
+            color: white;
+            /* min-width: 50px; */
+            text-align: center;
+            font-size: 12px;
+            font-style: normal
+        }
+
+        select {
+            background-color: rgba(255, 255, 255, 0);
+            border: thin solid grey;
+            border-radius: 4px;
+            display: inline-block;
+            font: inherit;
+            line-height: 1.5em;
+            padding: 0.5em 3.5em 0.5em 1em;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        select.arrows,
+        datalist.arrows {
+            background-image: url("dist/images/select-arrow.png");
+            background-position: calc(100% - 0rem), 100% 0;
+            background-size: 2.5em 2.5em;
+            background-repeat: no-repeat;
+        }
+
+        select.arrows.datalist.arrows:focus {
+            border-color: blue;
+            background-color: #ffffff00;
+            outline: 0;
+        }
+
+    
+        input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #aaa;
+            border-radius: 50%;
+            background-clip: content-box;
+            padding: 2px;
+            margin-right: 0.5rem;
+        }
+
+        input[type="radio"]:checked {
+            background-color: #b8932f;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #aaa;
+            background-clip: content-box;
+            padding: 2px;
+            margin-right: 0.5rem;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #b8932f;
+        }
+
+        .file-upload {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .radio-box {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 5px;
+            height: 31px;
+        }
+
+        .w-16 {
+            width: 16% !important;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .h2,
+        h2 {
+            font-size: 2rem !important;
+        }
+    </style>
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+
+<body id="main-container" class="default semi-dark">
+    <!-- START: Pre Loader-->
+    <div class="se-pre-con">
+        <div class="loader"></div>
+    </div>
+    <!-- END: Pre Loader-->
+    <!-- START: Header-->
+    <div id="header-fix" class="header fixed-top">
+        <div class="site-width">
+            <nav class="navbar navbar-expand-lg p-0">
+
+                <div class="navbar-header h-100 h4 mb-0 align-self-center logo-bar text-center">
+                    <a href="index.html" class="horizontal-logo text-center">
+                        <img src="dist/images/logo.png" class="img-fluid" width="80%" alt="">
+                    </a>
+                </div>
+
+                <div class="navbar-header h4 mb-0 text-center h-100 collapse-menu-bar">
+                    <a href="#" class="sidebarCollapse" id="collapse"><i class="icon-menu"></i></a>
+                </div>
+
+                <form class="float-left d-none d-lg-block search-form">
+                    <div class="form-group mb-0 position-relative">
+                        <input type="text" class="form-control border-0 rounded bg-search pl-5"
+                            placeholder="Search anything...">
+                        <div class="btn-search position-absolute top-0"> <a href="#"><i
+                                    class="h6 icon-magnifier"></i></a>
+                        </div> <a href="#" class="position-absolute close-button mobilesearch d-lg-none"
+                            data-toggle="dropdown" aria-expanded="false"><i class="icon-close h5"></i> </a>
+                    </div>
+                </form>
+                <div class="navbar-right ml-auto h-100">
+                    <ul class="ml-auto p-0 m-0 list-unstyled d-flex top-icon h-100">
+                        <li class="d-inline-block align-self-center d-block d-lg-none"> <a href="#"
+                                class="nav-link mobilesearch" data-toggle="dropdown" aria-expanded="false"><i
+                                    class="icon-magnifier h4"></i> </a>
+                        </li>
+                        <li class="d-inline-block d-flex lign-self-center display-none">
+                            <a href="/Gate_Help_Module.pdf" class="btn btn-primary help" target="_blank"
+                                title="Need Help?"><i class="fa fa-question-circle mr-2"></i>Need Help</a>
+                        </li>
+                        <li class="dropdown align-self-center"> <a href="#" class="nav-link" data-toggle="dropdown"
+                                aria-expanded="false"><i class="icon-reload h4"></i> <span class="badge badge-default">
+                                    <span class="ring"> </span><span class="ring-point"> </span> </span> </a>
+                            <ul class="dropdown-menu dropdown-menu-right border py-0">
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <img src="dist/images/author.jpg" alt=""
+                                                class="d-flex mr-3 img-fluid rounded-circle">
+                                            <div class="media-body">
+                                                <p class="mb-0">john</p> <span class="text-success">New user
+                                                    registered.</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <img src="dist/images/author2.jpg" alt=""
+                                                class="d-flex mr-3 img-fluid rounded-circle">
+                                            <div class="media-body">
+                                                <p class="mb-0">Peter</p> <span class="text-success">Server #12
+                                                    overloaded.</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <img src="dist/images/author3.jpg" alt=""
+                                                class="d-flex mr-3 img-fluid rounded-circle">
+                                            <div class="media-body">
+                                                <p class="mb-0">Bill</p> <span class="text-danger">Application
+                                                    error.</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li><a class="dropdown-item text-center py-2" href="#"> See All Tasks <i
+                                            class="icon-arrow-right pl-2 small"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown align-self-center d-inline-block"> <a href="#" class="nav-link"
+                                data-toggle="dropdown" aria-expanded="false"><span
+                                    class="bg-danger card-liner-absolute-icon text-white card-liner-small-tip">06</span><i
+                                    class="icon-bell h4"></i>
+                                <!-- <span class="badge badge-default"> <span class="ring"> </span><span class="ring-point"> </span> -->
+                                </span> </a>
+                            <ul class="dropdown-menu dropdown-menu-right border py-0">
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <h6 class="text-center m-2"><span
+                                                class="bg-danger card-liner-absolute-icon text-white card-liner-small-tip">06</span>Notifications
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="mb-0"><strong>01 December</strong>
+                                                </p> <span class="">Celebrate International Day <br>of Persons with
+                                                    Disabilities!</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="mb-0"><strong>02 December</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="mb-0"><strong>04 December</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
+                                        href="#">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="mb-0"><strong>05 December</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li><a class="dropdown-item text-center py-2" href="archive.html"> Archive View <i
+                                            class="icon-arrow-right pl-2 small"></i></a>
+                                </li>
+                            </ul>
+                            <!-- <div class="dropdown-menu dropdown-menu-right border py-0">
+
+
+							<a href="#" class="dropdown-item px-2 align-self-center d-flex"> <span class="fas fa-map-marker-alt mr-2 h6 mb-0"></span>01 December <br>
+								<p class=" text-left">Celebrate International Day <br>of Persons with Disabilities!</p>	
+							</a>
+							
+							<div class="dropdown-divider"></div>
+
+
+						 
+							 <a class="dropdown-item text-center py-2" href="#"> Archive View <i class="icon-arrow-right pl-2 small"></i></a> 
+						</div> -->
+                        </li>
+                        <li class="dropdown user-profile align-self-center d-inline-block">
+                            <a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
+                                <div class="media">
+                                    <img src="dist/images/author.jpg" alt="" class="d-flex img-fluid rounded-circle"
+                                        width="29">
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border dropdown-menu-right p-0">
+                                <p class="text-center m-2">
+                                    <img src="dist/images/author.jpg" alt="" class="rounded-circle">
+                                    <br /> <span>ZUBEDA L.</span>
+                                </p>
+                                <a href="#" class="dropdown-item px-2 align-self-center d-flex"> <span
+                                        class="fas fa-map-marker-alt mr-2 h6 mb-0"></span> Al Azmera Building</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item px-2 align-self-center d-flex"> <span
+                                        class="fas fa-phone-square mr-2 h6 mb-0"></span> +971 20 5859861</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item px-2 align-self-center d-flex"> <span
+                                        class="icon-envelope mr-2 h6 mb-0"></span> zubeda.l@aim.co</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item px-2 align-self-center d-flex"> <span
+                                        class="icon-settings mr-2 h6 mb-0"></span> Account Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item px-2 text-danger align-self-center d-flex"> <span
+                                        class="icon-logout mr-2 h6 mb-0"></span> Sign Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- END: Header-->
+    <!-- START: Main Menu-->
+    <div class="sidebar">
+        <div class="site-width">
+            <!-- START: Menu-->
+            <div class="menu-logo" align="center">
+                <a href="index.html">
+                    <img src="dist/images/logo-2.png" class="img-fluid" width="80%" alt="">
+                </a>
+            </div>
+            <ul id="side-menu" class="sidebar-menu">
+                <li class="dropdown active">
+                    <ul>
+                        <li><a href="index.html" target="_self"><i
+                                    class="mdi h5 mr-2 mdi-view-dashboard-outline"></i>DASHBOARD</a></li>
+                        <li><a href="user-management.html" target="_self"><i class="fas h6 mr-2 fa-user-cog"></i>USER
+                                MANAGEMENT</a></li>
+                        <li><a href="lead-index-page.html" target="_self"><i
+                                    class="mdi h5 mr-2 mdi-transit-connection-variant"></i>LEAD MANAGEMENT</li>
+                        <li><a href="property-management.html" target="_self"><i
+                                    class="mdi h5 mr-2 mdi-transit-connection-variant"></i>PROPERTY MANAGEMENT</li>
+                        <li><a href="task-management.html" target="_self"><i
+                                    class="mdi h5 mr-2 mdi-format-list-checks"></i>TASK MANAGEMENT</a></li>
+                        <li><a href="lead-source-report.html" target="_self"><i
+                                    class="mdi h5 mr-2 mdi-file-find"></i>REPORTS</a></li>
+                        <li><a href="#"><i class="mdi h5 mr-2 mdi-settings"></i>SETTINGS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- END: Main Menu-->
+    <!-- START: Main Content-->
+    <main>
+        <div class="container-fluid site-width">
+
+            <!-- START: Card Data-->
+            <div class="row">
+                <div class="col-md-12 mt-3 mb-3">
+                    <div class="card">
+                        <div
+                            class="card-header text-white bg-primary d-flex justify-content-between align-items-center">
+                            <h4 class="card-title font-weight-bolder m-1">UNIT DETAILS</h4>
+                        </div>
+                        <div class="card-content mt-3">
+                            <div class="card-body">
+                                <!-- PAGE CONTENT GOES HERE (START) -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="" enctype="multipart/form-data" method="post">
+                                            <div class="form-row">
+                                                <div class="col-md-12 mt-4 mb-4">
+                                                    <h5 class="font-weight-bold color-gold">Location & Price</h5>
+                                                    <hr class="my-2">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="">Property Type<span
+                                                            style="color: red;">*</span></label>
+                                                    <div class="d-flex radio-box">
+                                                        <input type="radio" name="property" value="residential"
+                                                            class="form-control" onclick="residential();" checked>
+                                                        <label>Residential</label>
+                                                        <input type="radio" name="property" value="warehouse"
+                                                            class="form-control ml-2" onclick="warehouse();">
+                                                        <label>Commercial</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3" id="resident">
+                                                    <label for="">Residential<span style="color: red;">*</span></label>
+                                                    <select class="form-control mySelect1 arrows" required>
+                                                        <option value="" selected>Select Residential</option>
+                                                        <option value="apartment">Apartment</option>
+                                                        <option value="town House">Town House</option>
+                                                        <option value="residentialfloor">Residential Floor</option>
+                                                        <option value="residentialplot">Residential Plot</option>
+                                                        <option value="penthouse">Pent House</option>
+                                                        <option value="villa compound">Villa Compound</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3 hide" id="whouse">
+                                                    <label for="">Commercial<span style="color: red;">*</span></label>
+                                                    <select class="form-control mySelect1 arrows" required>
+                                                        <option value="" selected>Select Commercial</option>
+                                                        <option value="office">Office</option>
+                                                        <option value="warehouse">Warehouse</option>
+                                                        <option value="shop">Shop</option>
+                                                        <option value="factory">Factory</option>
+                                                        <option value="showroom ">Showroom </option>
+                                                        <option value="commercialvilla ">Commercial Villa </option>
+                                                        <option value="commercialplot ">Commercial Plot </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Purpose<span style="color: red;">*</span></label>
+                                                    <div class="d-flex radio-box">
+                                                        <input type="radio" name="purpose" value="rent"
+                                                            class="form-control" onclick="rent();" checked>
+                                                        <label>Rent</label>
+                                                        <input type="radio" name="purpose" value="sale"
+                                                            class="form-control ml-5" onclick="sale();">
+                                                        <label>Sale</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3" id="drent">
+                                                    <label for="">Rent* (AED) </label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control" placeholder="purpose"
+                                                            id="rrent" required>
+                                                        <i class="icon-text">AED</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3 hide" id="dsale">
+                                                    <label for="">Sale* (AED) </label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control" placeholder="purpose"
+                                                            id="rsale" required>
+                                                        <i class="icon-text">AED</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Location<span style="color: red;">*</span></label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control" placeholder="Location"
+                                                            required>
+                                                        <i class="fas fa-map-marker-alt icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="">Emirates
+                                                        <span style="color: red;">*</span></label>
+                                                    <select class="form-control mySelect1 arrows" required>
+                                                        <option value="" selected>Select Emirates</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="">Community<span style="color: red;">*</span> </label>
+                                                    <select class="form-control arrows" required>
+                                                        <option value="" selected>Select Community</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Unit</label>
+                                                    <div class="d-flex">
+                                                        <input type="text" class="form-control mr-1"
+                                                            placeholder="Unit #">
+                                                        <input type="text" class="form-control mr-1"
+                                                            placeholder="Plot #">
+                                                        <input type="text" class="form-control" placeholder="Street #">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">View</label>
+                                                    <input type="text" class="form-control" placeholder="View">
+                                                </div>
+                                               
+                                                
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Payment Frequency </label>
+                                                    <select class="form-control arrows">
+                                                        <option value="" selected>Select Community</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                               
+                                                <div class="col-md-12 d-block mt-4">
+                                                    <div class="d-flex">
+                                                    <input type="checkbox" id="Never" class="form-control mr-2 mt-2"
+                                                        name="nli" value="Never Lived in">
+                                                    <label for="Never" class="mr-4 text-nowrap mt-2">Never Lived
+                                                        in</label>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                    <input type="checkbox" id="Featured" class="form-control mr-2 mt-2"
+                                                        name="fcw" value="Featured on company website">
+                                                    <label for="Featured" class="mr-4 mt-2 text-nowrap"> Featured on
+                                                        company
+                                                        website</label>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                    <input type="checkbox" id="Featured" class="form-control mr-2 mt-2"
+                                                        name="er" value="Exclusive Rights">
+                                                    <label for="Exclusive" class="text-nowrap mt-2"> Exclusive
+                                                        Rights</label>
+                                                        </div>
+
+                                                </div>
+
+
+                                                <div class="col-md-12 mt-4 mb-4">
+                                                    <h5 class="font-weight-bold color-gold">Listing Details</h5>
+                                                    <hr class="my-2">
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Beds</label>
+                                                    <div class="input-container">
+                                                        <input list="beds" name="bed" id="bed"
+                                                            class="form-control arrows">
+                                                        <datalist id="beds" class="arrows">
+                                                            <option value="1">
+                                                            <option value="2">
+                                                            <option value="3">
+                                                            <option value="4">
+                                                            <option value="5">
+                                                        </datalist>
+                                                        <!-- <span><img src="dist/images/select-arrow.png" alt="arrows"</span> -->
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Baths</label>
+                                                    <select class="form-control arrows select2-bootstrap">
+                                                        <option value="" selected>Select Baths</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Parking</label>
+                                                    <input type="text" class="form-control" placeholder="Parking">
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Developer</label>
+                                                    <select class="form-control arrows select2-bootstrap">
+                                                        <option value="" selected>Select</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Plot Area (sq. ft.)</label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control" placeholder="">
+                                                        <i class="icon-text">SqFt</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Area (sq. ft.)<span
+                                                            style="color: red;">*</span></label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control" placeholder="">
+                                                        <i class="icon-text">SqFt</i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Deposit</label>
+                                                    <div class="d-flex">
+                                                        <div class="input-container mr-1">
+                                                            <input type="text" class="form-control" placeholder="">
+                                                            <i class="fa fa-percent icon"></i>
+                                                        </div>
+                                                        <div class="input-container">
+                                                            <input type="text" class="form-control" placeholder="">
+                                                            <i class="icon-text">AED</i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Cheques</label>
+                                                    <select class="form-control arrows select2-bootstrap">
+                                                        <option value="" selected>Select</option>
+                                                        <option value="yearly">Yearly</option>
+                                                        <option value="half">Half Yearly</option>
+                                                        <option value="quarterly">Quarterly</option>
+                                                        <option value="monthly">Monthly</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Note</label>
+                                                    <select class="form-control arrows">
+                                                        <option value="" selected>Min. 300 characters.</option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3 mt-4">
+                                                    <button type="button"
+                                                        class="btn btn-outline-secondary btn-lg btn-block form-control radio-box"
+                                                        data-toggle="modal" data-target="#exampleModal">+
+                                                        Features (0)</button>
+                                                </div>                                          
+                                                <div class="col-md-4 mb-3 mt-4">
+                                                    <input type="file" class="file-upload form-control" id="img"
+                                                        name="img" accept="image/*" multiple="true" />
+                                                    <a href="#"
+                                                        class="btn btn-outline-secondary btn-lg btn-block form-control radio-box">
+                                                        + Photos <span id="numFiles" onclick="fileUpload();">(0)</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-4 mb-3 mt-4">
+                                                    <input type="file" class="file-upload form-control"
+                                                        multiple="true" />
+                                                    <a href="#"
+                                                        class="btn btn-outline-secondary btn-lg btn-block form-control radio-box">
+                                                        + Floor Plans <span>(0)</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 mt-4 mb-4">
+                                                    <h5 class="font-weight-bold color-gold">Associations</h5>
+                                                    <hr class="my-2">
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Owner Name</label>
+                                                    <div class="input-container">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Min. 3 characters required">
+                                                        <i class="fa fa-plus-circle icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Mobile No.</label>
+                                                    <input type="text" id="mobile" class="form-control"
+                                                        placeholder="Mobile Number" name="mobile">
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label for="">Email</label>
+                                                    <input type="email" id="email" class="form-control"
+                                                        placeholder="Enter Email" name="mobile">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="">Unit status<span style="color: red;">*</span></label>
+                                                    <div class="d-flex radio-box">
+                                                        <input type="radio" name="type" value="rented"
+                                                            class="form-control" onclick="rented();" checked>
+                                                        <label>Rented</label>
+                                                        <input type="radio" name="type" value="vacant"
+                                                            class="form-control ml-5" onclick="vacant();">
+                                                        <label>Vacant</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3" id="rentdate">
+                                                    <label for="">Rented Till Date</label>
+                                                    <input type="date" id="Source" class="form-control" placeholder=""
+                                                        name="tilldate">
+                                                </div>
+                                               <div class="col-12 text-center">
+
+                                                    <button type="submit" class="btn btn-primary m-2" id="Submit">
+                                                        <i class="fas h5 mr-2 fa-arrow-circle-right"></i>SUBMIT
+                                                    </button>
+                                                    <a href="#" class="btn btn-secondary m-2"><i
+                                                            class="fas h6 mt-1 mr-2 fas fa-times"></i> CANCEL</a>
+
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- PAGE CONTENT GOES HERE (END) -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- START: Card Data-->
+            <!-- END: Card DATA-->
+
+        </div>
+    </main>
+    <!-- END: Content-->
+
+    <!-- START: Footer-->
+    <footer class="site-footer">
+        2022 &copy; MARKA COMMUNICATIONS
+        <!-- <div align="center" class="mt-3 mb-3">
+				<img src="dist/images/power-by.png" class="img-fluid" width="" alt="">
+			</div> -->
+    </footer>
+    <!-- END: Footer-->
+
+    <!--Features Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Features</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Add Features:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Features Modal END -->
+    <!--Extra-Info -->
+    <div class="modal fade" id="extra-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Extra Info</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Add Extra Info:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Extra-Info END -->
+    <!-- START: Back to top-->
+    <a href="#" class="scrollup text-center"> <i class="icon-arrow-up"></i> </a>
+    <!-- END: Back to top-->
+    <!-- START: Template JS-->
+    <script src="dist/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="dist/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="dist/vendors/moment/moment.js"></script>
+    <script src="dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- END: Template JS-->
+    <!-- START: APP JS-->
+    <script src="dist/js/app.js"></script>
+    <!-- END: APP JS-->
+    <!-- START: Page Vendor JS-->
+
+    <!-- START: Page Vendor JS-->
+    <script src="dist/vendors/jquery-knob/jquery.knob.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <script src="dist/vendors/raphael/raphael.min.js"></script>
+    <script src="dist/vendors/morris/morris.min.js"></script>
+    <script src="dist/vendors/chartjs/Chart.min.js"></script>
+    <script src="dist/vendors/starrr/starrr.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.canvaswrapper.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.colorhelpers.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.saturated.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.browser.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.drawSeries.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.uiConstants.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.legend.js"></script>
+    <script src="dist/vendors/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="dist/vendors/chartjs/Chart.min.js"></script>
+    <script src="dist/vendors/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="dist/vendors/jquery-jvectormap/jquery-jvectormap-world-mill.js"></script>
+    <script src="dist/vendors/jquery-jvectormap/jquery-jvectormap-de-merc.js"></script>
+    <script src="dist/vendors/jquery-jvectormap/jquery-jvectormap-us-aea.js"></script>
+    <script src="dist/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="dist/vendors/lineprogressbar/jquery.barfiller.js"></script>
+    <script src="dist/vendors/select2/js/select2.full.min.js"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- START: Page JS-->
+    <script src="dist/js/home.script.js"></script>
+    <!-- END: Page JS-->
+    <!-- START: Page Script JS-->
+    <script src="dist/js/morris.script.js"></script>
+    <!-- END: Page Script JS-->
+    <script>
+        $(document).ready(function () {
+            $('.slimscroll').slimScroll({
+                height: '500px',
+                distance: '5px'
+            });
+        });
+
+
+        //radio buttons for rent and sale
+        function rent() {
+            document.getElementById('dsale').style.display = 'none';
+            document.getElementById('drent').style.display = 'block';
+        }
+        function sale() {
+            document.getElementById('drent').style.display = 'none';
+            document.getElementById('dsale').style.display = 'block';
+        }
+
+        //radio buttons for residental and ware house
+        function residential() {
+            document.getElementById('whouse').style.display = 'none';
+            document.getElementById('resident').style.display = 'block';
+        }
+        function warehouse() {
+            document.getElementById('resident').style.display = 'none';
+            document.getElementById('whouse').style.display = 'block';
+        }
+        //radio buttons for rented and vacant 
+        function rented() {
+
+            document.getElementById('rentdate').style.display = 'block';
+        }
+        function vacant() {
+            document.getElementById('rentdate').style.display = 'none';
+
+        }
+    
+      
+
+    </script>
+    </script>
+
+
+</body>
+<!-- END: Body-->
+
+</html>
